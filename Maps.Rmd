@@ -1,0 +1,97 @@
+---
+title: "Interactive Maps"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(leaflet)
+library(raster)
+library(RColorBrewer)
+
+## Emissions and Temperature Maps {.tabset}
+
+### Temperature
+
+Interactive visualization of land surface temperature across Saudi Arabia (2018–2021).
+
+```{r temperature-map}
+leaflet() %>% ...
+
+
+
+# Load temperature rasters
+tem18 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/tem18.tif")
+tem19 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/tem19.tif")
+tem20 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/tem20.tif")
+tem21 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/tem21.tif")
+
+# Create a unified color scale
+all_temp_vals <- c(values(tem18), values(tem19), values(tem20), values(tem21))
+pal_temp <- colorNumeric(palette = "RdYlBu", domain = all_temp_vals, reverse = TRUE)
+
+leaflet() %>%
+  addTiles() %>%
+  addRasterImage(tem18, colors = pal_temp, opacity = 0.7, group = "2018") %>%
+  addRasterImage(tem19, colors = pal_temp, opacity = 0.7, group = "2019") %>%
+  addRasterImage(tem20, colors = pal_temp, opacity = 0.7, group = "2020") %>%
+  addRasterImage(tem21, colors = pal_temp, opacity = 0.7, group = "2021") %>%
+  addLegend(pal = pal_temp, values = all_temp_vals, title = "Temperature (°C)") %>%
+  addLayersControl(
+    baseGroups = c("2018", "2019", "2020", "2021"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+
+### CO₂
+
+Carbon dioxide concentration patterns across Saudi cities from 2018 to 2021.
+
+# Load CO₂ rasters
+co2_2018 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/co218.tif")
+co2_2019 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/co219.tif")
+co2_2020 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/co220.tif")
+co2_2021 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/co221.tif")
+
+# Color scale
+all_co2_vals <- c(values(co2_2018), values(co2_2019), values(co2_2020), values(co2_2021))
+pal_co2 <- colorNumeric(palette = "YlOrRd", domain = all_co2_vals)
+
+leaflet() %>%
+  addTiles() %>%
+  addRasterImage(co2_2018, colors = pal_co2, opacity = 0.7, group = "2018") %>%
+  addRasterImage(co2_2019, colors = pal_co2, opacity = 0.7, group = "2019") %>%
+  addRasterImage(co2_2020, colors = pal_co2, opacity = 0.7, group = "2020") %>%
+  addRasterImage(co2_2021, colors = pal_co2, opacity = 0.7, group = "2021") %>%
+  addLegend(pal = pal_co2, values = all_co2_vals, title = "CO₂ (ppm)") %>%
+  addLayersControl(
+    baseGroups = c("2018", "2019", "2020", "2021"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+
+### CH₄
+
+Methane distribution across Saudi Arabia (2018–2021), showing urban and agricultural sources.
+
+# Load CH₄ rasters
+ch4_2018 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/ch418.tif")
+ch4_2019 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/ch419.tif")
+ch4_2020 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/ch420.tif")
+ch4_2021 <- raster("/Users/raghadaltassan/Library/Containers/com.apple.mail/Data/tmp/com.apple.mail.SavedAttachment-T0x600000881b80.tmp.Wtvzd4/senior project/data/ch421.tif")
+
+# Color scale
+all_ch4_vals <- c(values(ch4_2018), values(ch4_2019), values(ch4_2020), values(ch4_2021))
+pal_ch4 <- colorNumeric(palette = "BuPu", domain = all_ch4_vals)
+
+leaflet() %>%
+  addTiles() %>%
+  addRasterImage(ch4_2018, colors = pal_ch4, opacity = 0.7, group = "2018") %>%
+  addRasterImage(ch4_2019, colors = pal_ch4, opacity = 0.7, group = "2019") %>%
+  addRasterImage(ch4_2020, colors = pal_ch4, opacity = 0.7, group = "2020") %>%
+  addRasterImage(ch4_2021, colors = pal_ch4, opacity = 0.7, group = "2021") %>%
+  addLegend(pal = pal_ch4, values = all_ch4_vals, title = "CH₄ (ppb)") %>%
+  addLayersControl(
+    baseGroups = c("2018", "2019", "2020", "2021"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+

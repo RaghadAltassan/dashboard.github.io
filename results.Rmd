@@ -1,0 +1,12 @@
+---
+title: "Results"
+output: html_document
+---
+
+# Key Findings
+
+- **High CO₂ and CH₄ concentrations** were observed in industrial and urban areas.
+- **Surface temperature increases** aligned with emission hotspots.
+- **Spatio-temporal modeling** revealed strong links between GHG emissions and temperature variation.
+
+These results highlight critical regions that require focused environmental policies and demonstrate how data science can support national sustainability goals.

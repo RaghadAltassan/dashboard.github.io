@@ -1,0 +1,19 @@
+---
+title: "Home"
+output: html_document
+---
+
+# Exploring Climate Impact in Saudi Arabia  
+## Greenhouse Gas Emissions and Their Role in Climate Change
+
+### Background
+Climate change has become one of the most pressing global issues, driven by the rising levels of greenhouse gases such as carbon dioxide (CO₂) and methane (CH₄). These gases trap heat in the atmosphere, contributing to global warming, extreme weather events, and shifting climate patterns.
+
+### Research Focus and Objectives
+This project focuses on Saudi Arabia—a country facing both high emissions and environmental vulnerability. Using satellite data from 2018 to 2021, the study:
+- Analyzes spatial and temporal trends of CO₂, CH₄, and surface temperature.
+- Applies Bayesian spatio-temporal models (via INLA) to estimate the relationship between GHGs and temperature.
+- Aims to support Vision 2030 and climate policy planning through data-driven insights.
+
+### Why It Matters
+With its arid climate and reliance on fossil fuels, Saudi Arabia is especially sensitive to the effects of climate change. This research contributes to understanding the environmental challenges and provides visual and statistical tools to support mitigation strategies.
