@@ -3,7 +3,7 @@ output_dir: "docs"
 navbar:
   title: "GHG Dashboard"
   left:
-    - text: "Home"
+    - text: "Background"
       href: index.html
     - text: "Maps"
       href: maps.html
